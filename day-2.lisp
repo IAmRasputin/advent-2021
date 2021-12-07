@@ -1,0 +1,33 @@
+(in-package #:a21.day-2)
+
+(defun prompt (part)
+  (utils:echo-prompt 2 part))
+
+(defun compile-instruction (instruction)
+  (with-input-from-string (s instruction)
+    (cons (read s) (read s))))
+
+(defun part-1 ()
+  (let* ((instructions-str (utils:read-file-lines "inputs/day2.txt"))
+         (instructions-compiled (mapcar #'compile-instruction instructions-str))
+         (depth 0)
+         (horizontal 0))
+    (dolist (inst instructions-compiled (* depth horizontal))
+      (case (car inst)
+        (forward (incf horizontal (cdr inst)))
+        (down (incf depth (cdr inst)))
+        (up (decf depth (cdr inst)))))))
+
+(defun part-2 ()
+  (let* ((instructions-str (utils:read-file-lines "inputs/day2.txt"))
+         (instructions-compiled (mapcar #'compile-instruction instructions-str))
+         (depth 0)
+         (aim 0)
+         (horizontal 0))
+    (dolist (inst instructions-compiled (* depth horizontal))
+      (case (car inst)
+        (forward (progn
+                   (incf horizontal (cdr inst))
+                   (incf depth (* aim (cdr inst)))))
+        (down (incf aim (cdr inst)))
+        (up (decf aim (cdr inst)))))))

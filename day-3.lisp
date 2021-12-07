@@ -1,0 +1,30 @@
+(in-package #:a21.day-3)
+
+(defun prompt (part)
+  (utils:echo-prompt 3 part))
+
+(defun part-1 ()
+  (let* ((counter (do* ((input-lines (utils:read-file-lines "inputs/day3.txt") (cdr input-lines))
+                        (input-width (length (car input-lines)))
+                        (index 0 (1+ index))
+                        (current-line (car input-lines)
+                                      (car input-lines))
+                        (counter (make-array input-width :initial-element 0)))
+                       ((null input-lines) counter)
+                    (dotimes (idx input-width)
+                      (if (eq #\0 (aref current-line idx))
+                          (decf (aref counter idx))
+                          (incf (aref counter idx))))))
+         (anti-counter (make-array (array-total-size counter) :initial-element 0)))
+    (dotimes (idx (length counter))
+      (if (> (aref counter idx) 0)
+          (setf (aref counter idx) #\1
+                (aref anti-counter idx) #\0)
+          (setf (aref counter idx) #\0
+                (aref anti-counter idx) #\1)))
+    (let ((gamma (read-from-string (format nil "#b~a" (coerce counter 'string))))
+          (epsilon (read-from-string (format nil "#b~a" (coerce anti-counter 'string)))))
+      (* gamma epsilon))))
+
+(defun part-2 ()
+  )
