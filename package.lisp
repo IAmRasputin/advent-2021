@@ -34,6 +34,8 @@
 
 (defpackage #:advent-2021
   (:use #:cl)
-  (:local-nicknames (:day-1 :a21.day-1)
-                    (:day-2 :a21.day-2)
-                    (:day-3 :a21.day-3)))
+  (:local-nicknames
+   (:utils :a21.utils)
+   (:day-1 :a21.day-1)
+   (:day-2 :a21.day-2)
+   (:day-3 :a21.day-3)))
