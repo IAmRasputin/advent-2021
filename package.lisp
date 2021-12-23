@@ -32,10 +32,19 @@
    :part-1
    :part-2))
 
+(defpackage #:a21.day-4
+  (:use #:cl)
+  (:local-nicknames (:utils :a21.utils))
+  (:export
+   :prompt
+   :part-1
+   :part-2))
+
 (defpackage #:advent-2021
   (:use #:cl)
   (:local-nicknames
    (:utils :a21.utils)
    (:day-1 :a21.day-1)
    (:day-2 :a21.day-2)
-   (:day-3 :a21.day-3)))
+   (:day-3 :a21.day-3)
+   (:day-4 :a21.day-4)))
