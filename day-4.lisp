@@ -25,14 +25,14 @@
                 (append current-board
                         (list (mapcar #'parse-integer split-line))))))))
 
-(defun winning-board (board)
-  (dotimes (r 5)
-    ))
+(defun index-locations (boards)
+  )
 
 (defun part-1 ()
   (destructuring-bind (instructions boards)
       (load-input "inputs/day4.txt")
-    (let ((mark-boards (make-array `(,(length boards) 5 5))))
+    (let ((mark-boards (make-array `(,(length boards) 5 5)))
+          (location-index (index-locations boards)))
       (labels ((board (num)
                  (aref boards num))
                (is-marked (board col row)
@@ -40,6 +40,8 @@
                (mark (board col row)
                  (setf (aref mark-boards board row col) t))
                (board-ref (board row col)
-                 (aref boards board row col)))))))
+                 (aref boards board row col)))
+        ))))
 
-(defun part-2 ())
+(defun part-2 ()
+  )
